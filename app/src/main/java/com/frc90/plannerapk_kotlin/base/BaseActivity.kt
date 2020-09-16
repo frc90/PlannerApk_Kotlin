@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseActivity: AppCompatActivity(){
+abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -17,8 +17,18 @@ abstract class BaseActivity: AppCompatActivity(){
     }
 
     @LayoutRes
-    abstract fun getLayout():Int
+    abstract fun getLayout(): Int
 
-    fun Context.toast(context: Context = applicationContext, message: String, duration: Int = Toast.LENGTH_SHORT ){
+    // toast
+    fun showTextToast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    // no funciona
+    fun Context.toast(
+        context: Context = applicationContext,
+        message: String,
+        duration: Int = Toast.LENGTH_SHORT
+    ) {
     }
 }

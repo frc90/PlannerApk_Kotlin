@@ -34,7 +34,12 @@ class MainActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun signIn() {
-        toast(this,"Hello, World!!!")
+        showTextToast(this, "This is a test")
+
+        //ejemplo
+//        Toast.makeText(this, "Hello, world!!!", Toast.LENGTH_SHORT).show()
+
+//        toast(this,"Hello, World!!!")
     }
 
 
