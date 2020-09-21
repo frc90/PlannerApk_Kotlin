@@ -1,4 +1,4 @@
-package com.frc90.plannerapk_kotlin.presentation.login
+package com.frc90.plannerapk_kotlin.presentation
 
 interface LoginContract{
 
