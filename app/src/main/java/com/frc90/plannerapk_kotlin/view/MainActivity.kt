@@ -97,10 +97,10 @@ class MainActivity : BaseActivity(), LoginContract.View {
                     intent.putExtra("access", tokens.access)
                     startActivity(intent)
 
-                    Log.i("TAG_LOG", Gson().toJson(tokens))
-                    Log.i("TAG_LOG", "CODE: " + code)
+//                    Log.i("TAG_LOG", Gson().toJson(tokens))
+//                    Log.i("TAG_LOG", "CODE: " + code)
                 } else {
-                    Log.i("TAG_LOG", "CODE: " + code)
+//                    Log.i("TAG_LOG", "CODE: " + code)
                     Toast.makeText(this@MainActivity, response.message(), Toast.LENGTH_LONG)
                         .show()
                 }
