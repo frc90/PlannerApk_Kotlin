@@ -11,7 +11,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="185dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
@@ -58,7 +58,7 @@
                     android:gravity="left"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="Nombre:"
+                    android:text="Actividad:"
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="18sp" />
 
@@ -79,53 +79,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:text="Acapite:"
-                        android:textSize="18sp" />
-                    <TextView
-                        android:id="@+id/tv_acapite_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:text="Nombre"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:text="Objetivo: "
-                        android:textSize="18sp" />
-                    <TextView
-                        android:id="@+id/tv_goal_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:gravity="right"
-                        android:text="Nombre"
-                        android:textSize="18sp" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

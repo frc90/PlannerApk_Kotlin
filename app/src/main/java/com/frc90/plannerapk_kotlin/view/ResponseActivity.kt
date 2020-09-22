@@ -7,7 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.frc90.plannerapk_kotlin.R
-import com.frc90.plannerapk_kotlin.adapter.CurrentMonthAdapter
+import com.frc90.plannerapk_kotlin.adapter.ResultsAdapter
 import com.frc90.plannerapk_kotlin.model.CurrentMonth
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
@@ -24,7 +24,9 @@ class ResponseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_response)
 
         rv_response_activity.layoutManager = LinearLayoutManager(this)
-        rv_response_activity.adapter = CurrentMonthAdapter()
+        rv_response_activity.adapter = ResultsAdapter()
+
+
 
 
         getCurrentMonth()
@@ -73,8 +75,8 @@ class ResponseActivity : AppCompatActivity() {
             .build()
 
         val service = retrofit.create(ApiService::class.java)
-        val currentMonth = service.getCurrentMonth(getAccessToken())
-        currentMonth.enqueue(object : Callback<CurrentMonth> {
+        val resultsActivities = service.getCurrentMonth(getAccessToken())
+        resultsActivities.enqueue(object : Callback<CurrentMonth> {
             override fun onResponse(call: Call<CurrentMonth>, response: Response<CurrentMonth>) {
                 var code = response.code()
 
@@ -82,11 +84,9 @@ class ResponseActivity : AppCompatActivity() {
                     var activitiesMonth = response.body()!!
                     val results = activitiesMonth.results //staff todo
 
-                    (rv_response_activity.adapter as CurrentMonthAdapter).setListOfResult(results)
+                    (rv_response_activity.adapter as ResultsAdapter).setListOfResult(results)
 
                     Toast.makeText(this@ResponseActivity, "Funciono todo", Toast.LENGTH_SHORT).show()
-//                    Log.i("TAG_LOG", "ALgo fallo!!! \n" + "CODE: $code")
-//                    tv_test.text = activitiesMonth.toString()
                 } else {
                     Log.i("TAG_LOG", "ALgo fallo!!! \n" + "CODE: $code")
                 }
