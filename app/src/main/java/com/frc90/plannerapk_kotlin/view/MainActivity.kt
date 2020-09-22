@@ -31,13 +31,13 @@ class MainActivity : BaseActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn_singIn.setOnClickListener { signIn() }
+        btn_login.setOnClickListener { signIn() }
 
         val username: String = "francisco.padron"
         val password: String = "PK9TI1e3yP"
 
         var userData = UserData(username, password)
-        btn_singIn.setOnClickListener { createToken(userData) }
+        btn_login.setOnClickListener { createToken(userData) }
     }
 
     override fun getLayout(): Int {
@@ -50,11 +50,11 @@ class MainActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun showProgressBar() {
-        progressBar_singIn.visibility = View.VISIBLE
+//        progressBar_singIn.visibility = View.VISIBLE
     }
 
     override fun hideProgressBar() {
-        progressBar_singIn.visibility = View.GONE
+//        progressBar_singIn.visibility = View.GONE
     }
 
     override fun signIn() {
@@ -107,9 +107,8 @@ class MainActivity : BaseActivity(), LoginContract.View {
             }
 
             override fun onFailure(call: Call<Token>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Algo fallo!!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "Asegurece de estar conectado a internet", Toast.LENGTH_LONG).show()
                 t?.printStackTrace()
-                Log.i("TAG_LOG", "ALgo fallo!!!")
                 call.cancel()
             }
         })
