@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="btn_login_color">#03A9F4</color>
     <color name="cardBackground">#2A4D74</color>
+    <color name="cardColor">#E0E9ED</color>
 </resources>
