@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:paddingEnd="16dp"
@@ -34,7 +34,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_first_name"
+                        android:id="@+id/tv_full_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -63,7 +63,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/tv_name"
+                    android:id="@+id/tv_activity_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -82,29 +82,72 @@
                 android:layout_height="80dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:text="Acapite? Nombre:"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:text="Objetivo: "
-                    android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:text="Acapite:"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/tv_acapite_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:text="Nombre"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:text="Status: Aprovada"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:text="Objetivo: "
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/tv_goal_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:gravity="right"
+                        android:text="Nombre"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:text="Estado: "
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/tv_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:text="Aprovada"
+                        android:textSize="18sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -113,6 +156,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_start_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

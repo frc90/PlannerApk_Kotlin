@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.frc90.plannerapk_kotlin.R
+import com.frc90.plannerapk_kotlin.adapter.CurrentMonthAdapter
 import com.frc90.plannerapk_kotlin.model.CurrentMonth
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
@@ -21,25 +23,27 @@ class ResponseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_response)
 
-        getAccessToken()
+        rv_response_activity.layoutManager = LinearLayoutManager(this)
+        rv_response_activity.adapter = CurrentMonthAdapter()
 
-        btn_currentMonth.setOnClickListener { getCurrentMonth() }
+
+        getCurrentMonth()
     }
 
     /*
     * obtener valores del Preferences
     * */
     // mostrar los datos gurdados
-    private fun getToken(){
+    private fun getToken() {
         val sharePref = getPreferences(Context.MODE_PRIVATE)
-        val accessToken = sharePref.getString("tokens","")
-        tv_test.text = accessToken
+        val accessToken = sharePref.getString("tokens", "")
+//        tv_test.text = accessToken
 //        et_password.setText(pass)
     }
 
-    private fun saveData(){
+    private fun saveData() {
         val sharePref = getPreferences(Context.MODE_PRIVATE)
-        with(sharePref.edit()){
+        with(sharePref.edit()) {
 //            putString("userName", et_user.text.toString())
 //            putString("userPass", et_password.text.toString())
             commit()
@@ -47,9 +51,9 @@ class ResponseActivity : AppCompatActivity() {
     }
 
     // borrar los datos
-    private fun deleteData(){
+    private fun deleteData() {
         val sharePref = getPreferences(Context.MODE_PRIVATE)
-        with(sharePref.edit()){
+        with(sharePref.edit()) {
             putString("userName", "")
             putString("userPass", "")
             commit()
@@ -57,12 +61,12 @@ class ResponseActivity : AppCompatActivity() {
     }
 
 
-    private fun getAccessToken():String{
+    private fun getAccessToken(): String {
         val access = intent.extras!!.getString("access")
         return "Bearer " + access.toString()
     }
 
-    private fun getCurrentMonth(){
+    private fun getCurrentMonth() {
         val retrofit = Retrofit.Builder()
             .baseUrl(Routes.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -70,17 +74,20 @@ class ResponseActivity : AppCompatActivity() {
 
         val service = retrofit.create(ApiService::class.java)
         val currentMonth = service.getCurrentMonth(getAccessToken())
-        currentMonth.enqueue(object: Callback<CurrentMonth>{
+        currentMonth.enqueue(object : Callback<CurrentMonth> {
             override fun onResponse(call: Call<CurrentMonth>, response: Response<CurrentMonth>) {
                 var code = response.code()
 
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     var activitiesMonth = response.body()!!
                     val results = activitiesMonth.results //staff todo
 
-                    Log.i("TAG_LOG", "ALgo fallo!!! \n" + "CODE: $code")
-                    tv_test.text = activitiesMonth.toString()
-                }else{
+                    (rv_response_activity.adapter as CurrentMonthAdapter).setListOfResult(results)
+
+                    Toast.makeText(this@ResponseActivity, "Funciono todo", Toast.LENGTH_SHORT).show()
+//                    Log.i("TAG_LOG", "ALgo fallo!!! \n" + "CODE: $code")
+//                    tv_test.text = activitiesMonth.toString()
+                } else {
                     Log.i("TAG_LOG", "ALgo fallo!!! \n" + "CODE: $code")
                 }
             }
