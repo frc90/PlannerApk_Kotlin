@@ -16,6 +16,7 @@ import com.frc90.plannerapk_kotlin.networking.services.ApiService
 import com.frc90.plannerapk_kotlin.presentation.LoginContract
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,11 +34,17 @@ class MainActivity : BaseActivity(), LoginContract.View {
 
         btn_login.setOnClickListener { signIn() }
 
-        val username: String = "francisco.padron"
-        val password: String = "PK9TI1e3yP"
+        val username: String = input_full_name.text.toString()
+        val password: String = input_pass.text.toString()
 
-        var userData = UserData(username, password)
-        btn_login.setOnClickListener { createToken(userData) }
+        btn_login.setOnClickListener {
+            if (login(username, password)){
+                var userData = UserData(username, password)
+                createToken(userData)
+            }else{
+                showTextToast(this, "Por favor verifique su usuario y contraseña")
+            }
+        }
     }
 
     override fun getLayout(): Int {
