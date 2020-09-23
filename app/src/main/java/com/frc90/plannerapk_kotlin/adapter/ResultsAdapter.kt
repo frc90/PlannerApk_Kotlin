@@ -12,7 +12,6 @@ class ResultsAdapter : RecyclerView.Adapter<ResultsAdapter.ResultViewHolder>() {
     class ResultViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val fullName = itemView.tv_full_name
         var activityName = itemView.tv_activity_name
-        var state = itemView.tv_state
         var date = itemView.tv_start_date
     }
 
@@ -38,7 +37,6 @@ class ResultsAdapter : RecyclerView.Adapter<ResultsAdapter.ResultViewHolder>() {
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
         holder.fullName.text = result[position].owner.toString()
         holder.activityName.text = result[position].name
-        holder.state.text = result[position].status
         holder.date.text = result[position].startDate
     }
 }

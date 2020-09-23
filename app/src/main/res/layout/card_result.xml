@@ -11,7 +11,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="185dp"
+        android:layout_height="170dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
@@ -79,34 +79,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:text="Estado: "
-                        android:textSize="18sp" />
-                    <TextView
-                        android:id="@+id/tv_state"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:text="Aprovada"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:orientation="vertical">
 
@@ -118,6 +90,7 @@
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
                     android:text="Fecha: 10 de optubre del 2020"
+                    android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="18sp" />
             </LinearLayout>
 

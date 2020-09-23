@@ -11,6 +11,7 @@ import com.frc90.plannerapk_kotlin.adapter.ResultsAdapter
 import com.frc90.plannerapk_kotlin.model.CurrentMonth
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
+import com.frc90.plannerapk_kotlin.presentation.LoginContract
 import kotlinx.android.synthetic.main.activity_response.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,10 +23,6 @@ class ResponseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_response)
-
-        //hacer que funcione
-//        supportActionBar!!.setDisplayShowHomeEnabled(true)
-//        supportActionBar!!.setIcon(R.mipmap.ic_launcher_foreground)
 
         rv_response_activity.layoutManager = LinearLayoutManager(this)
         rv_response_activity.adapter = ResultsAdapter()
@@ -56,9 +53,6 @@ class ResponseActivity : AppCompatActivity() {
                     val results = activitiesMonth.results //staff todo
 
                     (rv_response_activity.adapter as ResultsAdapter).setListOfResult(results)
-
-                    Toast.makeText(this@ResponseActivity, "Funciono todo", Toast.LENGTH_SHORT)
-                        .show()
                 } else {
                     Log.i("TAG_LOG", "ALgo fallo!!! \n" + "CODE: $code")
                 }

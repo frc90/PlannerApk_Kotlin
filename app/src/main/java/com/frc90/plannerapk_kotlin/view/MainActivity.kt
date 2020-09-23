@@ -42,6 +42,8 @@ class MainActivity : BaseActivity(), LoginContract.View {
                 // guardar las credenciales
                 if (cb_remember_me.isChecked){
                     saveData()
+                } else{
+                    deleteData()
                 }
                 val userData = UserData(username, password)
                 createToken(userData)

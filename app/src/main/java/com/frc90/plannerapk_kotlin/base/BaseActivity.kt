@@ -95,7 +95,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     // borrar los datos
-    private fun deleteData(){
+    fun deleteData(){
         val sharePref = getPreferences(Context.MODE_PRIVATE)
         with(sharePref.edit()){
             putString("userName", "")
