@@ -6,6 +6,5 @@ interface LoginContract{
         fun showError(msgError: String)
         fun showProgressBar()
         fun hideProgressBar()
-        fun signIn()
     }
 }

@@ -32,14 +32,18 @@ class MainActivity : BaseActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn_login.setOnClickListener { signIn() }
-
-        val username: String = input_full_name.text.toString()
-        val password: String = input_pass.text.toString()
+        // mostrar si existen las credenciales
+        showData()
 
         btn_login.setOnClickListener {
+            val username: String = input_full_name.text.toString()
+            val password: String = input_pass.text.toString()
             if (login(username, password)){
-                var userData = UserData(username, password)
+                // guardar las credenciales
+                if (cb_remember_me.isChecked){
+                    saveData()
+                }
+                val userData = UserData(username, password)
                 createToken(userData)
             }else{
                 showTextToast(this, "Por favor verifique su usuario y contraseña")
@@ -62,63 +66,5 @@ class MainActivity : BaseActivity(), LoginContract.View {
 
     override fun hideProgressBar() {
 //        progressBar_singIn.visibility = View.GONE
-    }
-
-    override fun signIn() {
-        showTextToast(this, "This is a test")
-    }
-
-    /*
-    * Preferences
-    * */
-
-    // guardar los token de acceso
-    private fun saveTokenPref(tokens: String) {
-        val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            putString("tokens", tokens)
-            commit()
-        }
-    }
-    /*end Preferences*/
-
-    fun createToken(userData: UserData) {
-        showProgressBar()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(Routes.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service = retrofit.create(ApiService::class.java)
-        val newToken = service.getAccessToken(userData)
-
-        newToken.enqueue(object : Callback<Token> {
-            override fun onResponse(call: Call<Token>, response: Response<Token>) {
-                val code = response?.code()
-                if (response.isSuccessful) {
-                    val tokens = response.body()!!
-
-                    saveTokenPref(tokens.access)
-                    var intent = Intent(this@MainActivity, ResponseActivity::class.java)
-                    intent.putExtra("access", tokens.access)
-                    startActivity(intent)
-
-//                    Log.i("TAG_LOG", Gson().toJson(tokens))
-//                    Log.i("TAG_LOG", "CODE: " + code)
-                } else {
-//                    Log.i("TAG_LOG", "CODE: " + code)
-                    Toast.makeText(this@MainActivity, response.message(), Toast.LENGTH_LONG)
-                        .show()
-                }
-            }
-
-            override fun onFailure(call: Call<Token>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Asegurece de estar conectado a internet", Toast.LENGTH_LONG).show()
-                t?.printStackTrace()
-                call.cancel()
-            }
-        })
-
     }
 }
