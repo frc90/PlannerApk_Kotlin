@@ -7,7 +7,7 @@
     android:background="@drawable/gradiente3"
     android:gravity="center"
     android:padding="10dp"
-    tools:context=".view.MainActivity">
+    tools:context=".view.activities.MainActivity">
 
 
     <ScrollView
@@ -132,6 +132,17 @@
                     android:text="@string/login"
                     android:textColor="@drawable/btn_txt_login" />
 
+
+                <Button
+                    android:id="@+id/btn_dash_boar"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/btn_login"
+                    android:text="Testing"
+                    android:textColor="@drawable/btn_txt_login" />
 
             </LinearLayout>
 

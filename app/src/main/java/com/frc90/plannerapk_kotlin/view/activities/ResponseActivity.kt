@@ -1,6 +1,5 @@
-package com.frc90.plannerapk_kotlin.view
+package com.frc90.plannerapk_kotlin.view.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -11,7 +10,6 @@ import com.frc90.plannerapk_kotlin.adapter.ResultsAdapter
 import com.frc90.plannerapk_kotlin.model.CurrentMonth
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
-import com.frc90.plannerapk_kotlin.presentation.LoginContract
 import kotlinx.android.synthetic.main.activity_response.*
 import retrofit2.Call
 import retrofit2.Callback

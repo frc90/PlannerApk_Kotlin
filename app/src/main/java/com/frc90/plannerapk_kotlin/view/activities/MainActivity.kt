@@ -1,33 +1,22 @@
-package com.frc90.plannerapk_kotlin.view
+package com.frc90.plannerapk_kotlin.view.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.frc90.plannerapk_kotlin.R
 import com.frc90.plannerapk_kotlin.base.BaseActivity
-import com.frc90.plannerapk_kotlin.model.Token
 import com.frc90.plannerapk_kotlin.model.UserData
-import com.frc90.plannerapk_kotlin.networking.generator.RetrofitClient
-import com.frc90.plannerapk_kotlin.networking.routes.Routes
-import com.frc90.plannerapk_kotlin.networking.services.ApiService
 import com.frc90.plannerapk_kotlin.presentation.LoginContract
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : BaseActivity(), LoginContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         // splashscreen
         Thread.sleep(2000)
         setTheme(R.style.AppTheme)
+
+
+        // hacer el
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,6 +39,11 @@ class MainActivity : BaseActivity(), LoginContract.View {
             }else{
                 showTextToast(this, "Por favor verifique su usuario y contraseña")
             }
+        }
+
+        btn_dash_boar.setOnClickListener {
+            var intent = Intent(this, MainDashboard::class.java)
+            startActivity(intent)
         }
     }
 

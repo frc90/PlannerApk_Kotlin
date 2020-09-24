@@ -12,7 +12,7 @@ import com.frc90.plannerapk_kotlin.model.Token
 import com.frc90.plannerapk_kotlin.model.UserData
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
-import com.frc90.plannerapk_kotlin.view.ResponseActivity
+import com.frc90.plannerapk_kotlin.view.activities.ResponseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
