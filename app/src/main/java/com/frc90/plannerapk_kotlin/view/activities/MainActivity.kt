@@ -41,9 +41,24 @@ class MainActivity : BaseActivity(), LoginContract.View {
             }
         }
 
+        // esto es necesario
         btn_dash_boar.setOnClickListener {
-            var intent = Intent(this, MainDashboard::class.java)
-            startActivity(intent)
+            val username: String = input_full_name.text.toString()
+            val password: String = input_pass.text.toString()
+            if (login(username, password)){
+                // guardar las credenciales
+                if (cb_remember_me.isChecked){
+                    saveData()
+                } else{
+                    deleteData()
+                }
+                val userData = UserData(username, password)
+                createToken(userData)
+            }else{
+                showTextToast(this, "Por favor verifique su usuario y contraseña")
+            }
+//            var intent = Intent(this, MainDashboard::class.java)
+//            startActivity(intent)
         }
     }
 

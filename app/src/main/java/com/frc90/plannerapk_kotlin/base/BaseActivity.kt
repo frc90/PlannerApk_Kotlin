@@ -12,6 +12,7 @@ import com.frc90.plannerapk_kotlin.model.Token
 import com.frc90.plannerapk_kotlin.model.UserData
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
+import com.frc90.plannerapk_kotlin.view.activities.MainDashboard
 import com.frc90.plannerapk_kotlin.view.activities.ResponseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -135,7 +136,8 @@ abstract class BaseActivity : AppCompatActivity() {
                     val tokens = response.body()!!
 
                     saveTokenPref(tokens.access)
-                    var intent = Intent(this@BaseActivity, ResponseActivity::class.java)
+//                    var intent = Intent(this@BaseActivity, ResponseActivity::class.java)
+                    var intent = Intent(this@BaseActivity, MainDashboard::class.java)
                     // para no virar hacia el login
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     intent.putExtra("access", tokens.access)
