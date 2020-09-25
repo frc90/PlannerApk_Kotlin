@@ -9,8 +9,6 @@
     android:padding="4dp"
     tools:context=".view.activities.ResponseActivity">
 
-    <include layout="@layout/action_bar"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_response_activity"
         android:layout_width="match_parent"
