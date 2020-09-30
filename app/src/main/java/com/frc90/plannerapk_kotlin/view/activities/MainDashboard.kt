@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.frc90.plannerapk_kotlin.R
-import com.frc90.plannerapk_kotlin.adapter.ResultsAdapter
 import com.frc90.plannerapk_kotlin.model.CurrentMonth
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
@@ -15,7 +14,6 @@ import com.github.tibolte.agendacalendarview.CalendarPickerController
 import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent
 import com.github.tibolte.agendacalendarview.models.CalendarEvent
 import com.github.tibolte.agendacalendarview.models.DayItem
-import kotlinx.android.synthetic.main.activity_response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,13 +36,13 @@ class MainDashboard : AppCompatActivity() {
     }
 
     // pasar los valores a la lista de eventos para mostrar en el layout
-    fun showEvents(eventList: ArrayList<CalendarEvent>){
+    fun showEvents(eventList: ArrayList<CalendarEvent>) {
         // minimum and maximum date of our calendar
         // 2 month behind, one year ahead, example: March 2015 <-> May 2015 <-> May 2016
         val minDate: Calendar = Calendar.getInstance()
         val maxDate: Calendar = Calendar.getInstance()
 
-        minDate.add(Calendar.MONTH, -2)
+        minDate.add(Calendar.MONTH, -1)
         minDate.set(Calendar.DAY_OF_MONTH, 1)
         maxDate.add(Calendar.YEAR, 1)
 
@@ -131,6 +129,11 @@ class MainDashboard : AppCompatActivity() {
                 if (response.isSuccessful) {
                     var activitiesMonth = response.body()!!
                     val results = activitiesMonth.results //staff todo
+                    Toast.makeText(
+                        applicationContext,
+                        "Resullt ${results.size}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     // val results -> con las actividades del mes
                     results.forEach {
 
@@ -138,18 +141,29 @@ class MainDashboard : AppCompatActivity() {
                         startTime2.add(Calendar.DAY_OF_YEAR, Math.random().toInt())
                         val endTime2 = Calendar.getInstance()
                         endTime2.add(Calendar.DAY_OF_YEAR, Math.random().toInt())
+
+                        val starDate = getMonth(it.startDate)
+
+                        val endDate = getMonth(it.endDate)
+
+                        val name = it.name
+                        val location = if (it.location != null) it.location.name else ""
+                        val allDay = it.allDay
+                        val observation = it.observation
+
+
                         val event = BaseCalendarEvent(
-                            it.name,
-                            "A beautiful small town",
-                            it.location.name,
+                            name,
+                            observation,
+                            location,
                             ContextCompat.getColor(this@MainDashboard, R.color.blue_selected),
-                            startTime2,
-                            endTime2,
-                            it.allDay
+                            starDate,
+                            endDate,
+                            allDay
                         )
                         eventList.add(event)
-//                        it.startDate
-//                        it.endDate
+
+
                     }
 
                     showEvents(eventList)
@@ -168,5 +182,21 @@ class MainDashboard : AppCompatActivity() {
             }
 
         })
+    }
+
+
+    private fun getMonth(date: String): Calendar {
+        val calendar = Calendar.getInstance()
+        // convert String to date
+        val day = "${date[8]}${date[9]}".toInt()
+        val month = "${date[5]}${date[6]}".toInt()
+        val year = "${date[0]}${date[1]}${date[2]}${date[3]}".toInt()
+        calendar.set(Calendar.DAY_OF_MONTH, day)
+        calendar.set(Calendar.MONTH, month - 1)
+        calendar.set(Calendar.YEAR, year)
+
+        Log.d("MAIN_DASHBOARD", calendar.get(Calendar.DAY_OF_MONTH).toString())
+
+        return calendar
     }
 }

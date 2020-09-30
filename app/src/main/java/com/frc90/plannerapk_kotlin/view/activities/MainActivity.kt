@@ -2,6 +2,7 @@ package com.frc90.plannerapk_kotlin.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.frc90.plannerapk_kotlin.R
 import com.frc90.plannerapk_kotlin.base.BaseActivity
