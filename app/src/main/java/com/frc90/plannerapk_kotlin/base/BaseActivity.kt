@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,6 @@ import com.frc90.plannerapk_kotlin.model.UserData
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
 import com.frc90.plannerapk_kotlin.view.activities.MainDashboard
-import com.frc90.plannerapk_kotlin.view.activities.ResponseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,32 +38,25 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     // login con las credenciales
-    fun login(name: String, password: String):Boolean{
-        if (!isValiName(name)){
+    fun login(name: String, password: String): Boolean {
+        if (!isValiName(name) || !isValiPassword(password)) {
             Toast.makeText(
                 this,
-                "Tu nombre de usuario no es correcto",
+                "Tu nombre de usuario o contraseña, no es correcto",
                 Toast.LENGTH_SHORT
             ).show()
             return false
-        }else if (!isValiPassword(password)) {
-            Toast.makeText(
-                this,
-                "La contraseña no es correcta, tiene que ser mayor a 8 caracteres, por favor intentelo de nuevo",
-                Toast.LENGTH_SHORT
-            ).show();
-            return false;
         } else {
-            return true;
+            return true
         }
     }
 
     // validaciones
-    fun isValiName(name: String):Boolean {
+    fun isValiName(name: String): Boolean {
         return !TextUtils.isEmpty(name)
     }
 
-    fun isValiPassword(passwrod: String):Boolean {
+    fun isValiPassword(passwrod: String): Boolean {
         return passwrod.length > 8;
     }
 
@@ -74,11 +67,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     // mostrar los datos guardados
-    fun showData(){
+    fun showData() {
         val sharePref = getPreferences(Context.MODE_PRIVATE)
-        val user = sharePref.getString("userName","")
-        val pass = sharePref.getString("userPass","")
-        if (!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)){
+        val user = sharePref.getString("userName", "")
+        val pass = sharePref.getString("userPass", "")
+        if (!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)) {
             input_full_name.setText(user)
             input_pass.setText(pass)
             cb_remember_me.isChecked = true
@@ -86,9 +79,9 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     // salvar los datos en modo privado
-    fun saveData(){
+    fun saveData() {
         val sharePref = getPreferences(Context.MODE_PRIVATE)
-        with(sharePref.edit()){
+        with(sharePref.edit()) {
             putString("userName", input_full_name.text.toString())
             putString("userPass", input_pass.text.toString())
             commit()
@@ -96,22 +89,11 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     // borrar los datos
-    fun deleteData(){
+    fun deleteData() {
         val sharePref = getPreferences(Context.MODE_PRIVATE)
-        with(sharePref.edit()){
+        with(sharePref.edit()) {
             putString("userName", "")
             putString("userPass", "")
-            commit()
-        }
-    }
-
-
-
-    // guardar los token de acceso
-    private fun saveTokenPref(tokens: String) {
-        val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            putString("tokens", tokens)
             commit()
         }
     }
@@ -134,9 +116,6 @@ abstract class BaseActivity : AppCompatActivity() {
                 val code = response?.code()
                 if (response.isSuccessful) {
                     val tokens = response.body()!!
-
-                    saveTokenPref(tokens.access)
-//                    var intent = Intent(this@BaseActivity, ResponseActivity::class.java)
                     var intent = Intent(this@BaseActivity, MainDashboard::class.java)
                     // para no virar hacia el login
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

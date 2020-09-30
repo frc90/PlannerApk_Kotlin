@@ -29,22 +29,23 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
-                    android:layout_marginTop="30dp"
-                    android:contentDescription="@string/logo"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher_foreground" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
+                    android:paddingTop="40dp"
                     android:textColor="#fff"
-                    android:textSize="25sp"
+                    android:textSize="45sp"
                     android:textStyle="italic|bold"
                     android:typeface="serif" />
+
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="15dp"
+                    android:contentDescription="@string/logo"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher_foreground" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -131,19 +132,6 @@
                     android:background="@drawable/btn_login"
                     android:text="@string/login"
                     android:textColor="@drawable/btn_txt_login" />
-
-
-                <Button
-                    android:id="@+id/btn_dash_boar"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/btn_login"
-                    android:text="Testing"
-                    android:textColor="@drawable/btn_txt_login" />
-
             </LinearLayout>
 
 

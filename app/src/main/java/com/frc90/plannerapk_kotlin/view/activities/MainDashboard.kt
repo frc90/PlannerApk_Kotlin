@@ -1,6 +1,8 @@
 package com.frc90.plannerapk_kotlin.view.activities
 
+import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +36,6 @@ class MainDashboard : AppCompatActivity() {
         getCurrentMonth()
 
     }
-
     // pasar los valores a la lista de eventos para mostrar en el layout
     fun showEvents(eventList: ArrayList<CalendarEvent>) {
         // minimum and maximum date of our calendar
@@ -70,43 +71,6 @@ class MainDashboard : AppCompatActivity() {
         return
     }
 
-    // ejemplo para adicionar evento alcalendario
-    private fun mockList(eventList: ArrayList<CalendarEvent>) {
-        val startTime1 = Calendar.getInstance()
-        val endTime1 = Calendar.getInstance()
-        endTime1.add(Calendar.MONTH, 1)
-        val event1 = BaseCalendarEvent(
-            "Thibault travels in Iceland", "A wonderful journey!", "Iceland",
-            ContextCompat.getColor(this, R.color.colorAccent), startTime1, endTime1, true
-        )
-        eventList.add(event1)
-        val startTime2 = Calendar.getInstance()
-        startTime2.add(Calendar.DAY_OF_YEAR, 1)
-        val endTime2 = Calendar.getInstance()
-        endTime2.add(Calendar.DAY_OF_YEAR, 3)
-        val event2 = BaseCalendarEvent(
-            "Visit to Dalvík",
-            "A beautiful small town",
-            "Dalvík",
-            ContextCompat.getColor(this, R.color.blue_selected),
-            startTime2,
-            endTime2,
-            true
-        )
-        eventList.add(event2)
-
-        // Example on how to provide your own layout
-        val startTime3 = Calendar.getInstance()
-        val endTime3 = Calendar.getInstance()
-        startTime3[Calendar.HOUR_OF_DAY] = 14
-        startTime3[Calendar.MINUTE] = 0
-        endTime3[Calendar.HOUR_OF_DAY] = 15
-        endTime3[Calendar.MINUTE] = 0
-    }
-
-    /*-------------------------------------------------------------------
-    * arreglar si o si
-    * -------------------------------------------------------------------*/
 
     // obtener el token de acceso
     private fun getAccessToken(): String {

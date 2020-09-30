@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">PlannerApk_Kotlin</string>
+    <string name="app_name">Planner-Apk</string>
     <string name="logo">Logo de Planner</string>
-    <string name="name">nombre.apellido</string>
-    <string name="pass">contraseña</string>
+    <string name="name">Usuario</string>
+    <string name="pass">Contraseña</string>
     <string name="remember_me">Recordar</string>
     <string name="login">Entrar</string>
 </resources>
