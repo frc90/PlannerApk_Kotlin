@@ -60,12 +60,6 @@ abstract class BaseActivity : AppCompatActivity() {
         return passwrod.length > 8;
     }
 
-
-    /*
-    * Preferences
-    * */
-
-
     // mostrar los datos guardados
     fun showData() {
         val sharePref = getPreferences(Context.MODE_PRIVATE)

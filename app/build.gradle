@@ -75,4 +75,7 @@ dependencies {
     //okhttp
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 
+//    implementation "com.kaopiz:kprogresshud:$progressDialogVersion"
+    implementation "com.kaopiz:kprogresshud:1.2.0"
+
 }

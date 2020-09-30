@@ -1,8 +1,6 @@
 package com.frc90.plannerapk_kotlin.view.activities
 
-import android.content.Context
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -47,10 +45,6 @@ class MainDashboard : AppCompatActivity() {
         minDate.set(Calendar.DAY_OF_MONTH, 1)
         maxDate.add(Calendar.YEAR, 1)
 
-        // lista de los eventos
-
-//        mockList(eventList);
-
         val agenda = findViewById<AgendaCalendarView>(R.id.agenda_calendar_view)
 
         agenda.init(
@@ -94,8 +88,6 @@ class MainDashboard : AppCompatActivity() {
                     var activitiesMonth = response.body()!!
                     val results = activitiesMonth //staff todo
 
-//                    Log.d("Response" , results.toString())
-
                     // val results -> con las actividades del mes
                     results.forEach {
 
@@ -113,7 +105,6 @@ class MainDashboard : AppCompatActivity() {
                         val allDay = it.allDay
                         val observation = it.observation
 
-
                         val event = BaseCalendarEvent(
                             name,
                             observation,
@@ -124,13 +115,8 @@ class MainDashboard : AppCompatActivity() {
                             allDay
                         )
                         eventList.add(event)
-
-
                     }
-
                     showEvents(eventList)
-
-
                 } else {
                     Log.i("TAG_LOG", "ALgo fallo!!! \n" + "CODE: $code")
                 }
@@ -142,7 +128,6 @@ class MainDashboard : AppCompatActivity() {
                 Log.i("TAG_LOG", "ALgo fallo!!!")
                 call.cancel()
             }
-
         })
     }
 
@@ -156,9 +141,6 @@ class MainDashboard : AppCompatActivity() {
         calendar.set(Calendar.DAY_OF_MONTH, day)
         calendar.set(Calendar.MONTH, month - 1)
         calendar.set(Calendar.YEAR, year)
-
-        Log.d("MAIN_DASHBOARD", calendar.get(Calendar.DAY_OF_MONTH).toString())
-
         return calendar
     }
 }

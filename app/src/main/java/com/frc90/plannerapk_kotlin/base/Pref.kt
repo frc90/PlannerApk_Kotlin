@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class Pref(context: Context){
-    private val PREFS_NAME = ""
+    private val PREFS_NAME = "com.frc90.plannerapk_kotlin"
     private val SHARED_IS_LOGGED = "id_logged"
     private val SHARED_USER_NAME = "user_name"
     private val SHARED_PASSWORD = "password"
