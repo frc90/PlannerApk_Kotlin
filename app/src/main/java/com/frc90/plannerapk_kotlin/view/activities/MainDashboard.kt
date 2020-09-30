@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.frc90.plannerapk_kotlin.R
-import com.frc90.plannerapk_kotlin.model.CurrentMonth
+import com.frc90.plannerapk_kotlin.model.Result
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
 import com.frc90.plannerapk_kotlin.networking.services.ApiService
 import com.github.tibolte.agendacalendarview.AgendaCalendarView
@@ -123,17 +123,15 @@ class MainDashboard : AppCompatActivity() {
 
         val service = retrofit.create(ApiService::class.java)
         val resultsActivities = service.getCurrentMonth(getAccessToken())
-        resultsActivities.enqueue(object : Callback<CurrentMonth> {
-            override fun onResponse(call: Call<CurrentMonth>, response: Response<CurrentMonth>) {
+        resultsActivities.enqueue(object : Callback<ArrayList<Result>> {
+            override fun onResponse(call: Call<ArrayList<Result>>, response: Response<ArrayList<Result>>) {
                 var code = response.code()
                 if (response.isSuccessful) {
                     var activitiesMonth = response.body()!!
-                    val results = activitiesMonth.results //staff todo
-                    Toast.makeText(
-                        applicationContext,
-                        "Resullt ${results.size}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    val results = activitiesMonth //staff todo
+
+//                    Log.d("Response" , results.toString())
+
                     // val results -> con las actividades del mes
                     results.forEach {
 
@@ -174,7 +172,7 @@ class MainDashboard : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<CurrentMonth>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<Result>>, t: Throwable) {
                 Toast.makeText(this@MainDashboard, "Algo fallo!!!", Toast.LENGTH_LONG).show()
                 t?.printStackTrace()
                 Log.i("TAG_LOG", "ALgo fallo!!!")

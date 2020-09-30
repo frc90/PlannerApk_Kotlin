@@ -1,6 +1,6 @@
 package com.frc90.plannerapk_kotlin.networking.services
 
-import com.frc90.plannerapk_kotlin.model.CurrentMonth
+import com.frc90.plannerapk_kotlin.model.Result
 import com.frc90.plannerapk_kotlin.model.Token
 import com.frc90.plannerapk_kotlin.model.UserData
 import com.frc90.plannerapk_kotlin.networking.routes.Routes
@@ -18,5 +18,5 @@ interface ApiService {
 
     // current_month
     @GET(Routes.CURRENT_MONTH)
-    fun getCurrentMonth(@Header("Authorization") token: String): Call<CurrentMonth>
+    fun getCurrentMonth(@Header("Authorization") token: String): Call<ArrayList<Result>>
 }
